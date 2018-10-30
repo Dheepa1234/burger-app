@@ -1,10 +1,7 @@
-USE burgers_db;
+--Seeds file to populate database with some starter data--
 
-INSERT INTO burgers (burger_name, devoured)
-VALUES ("veggie burger", 0);
+INSERT INTO burgers (burger_name, devoured) VALUES ("Awesome Burger", true);
 
-INSERT INTO burgers (burger_name, devoured)
-VALUES ("cheeseburger", 0);
+INSERT INTO burgers (burger_name, devoured) VALUES ("Good Burger", false);
 
-INSERT INTO burgers (burger_name, devoured)
-VALUES ("hamburger", 1);
+INSERT INTO burgers (burger_name, devoured) VALUES ("Mondo Burger", true);
