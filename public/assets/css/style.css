@@ -25,7 +25,7 @@ body {
 
 /* Burger background image*/
 body {
-    background-image: url("/assets/img/burgers.jpeg");
+    background-image: url("/img/burgers.jpeg");
     
     background-repeat: no-repeat;
     background-size: cover;
