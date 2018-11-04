@@ -1,36 +1,36 @@
-// Import the ORM to create functions that will interact with the database.
-var orm = require("../config/orm.js");
+
+// Below are the models to use the orms build in orm.js to interface with the orms.js.
+
+
+var orm = require('../config/orm.js');
 
 var burger = {
-  //Select all burgers from database.
-  all: function(cb) {
-    orm.all("burgers", function(res) {
-      cb(res);
-    });
-  },
-
-  //Create function to create/add a burger.
-  // The variables cols and vals are arrays.
-  create: function(cols, vals, cb) {
-    orm.create("burgers", cols, vals, function(res) {
-      cb(res);
-    });
-  },
-
-  //Update function to update burger devoured state.
-  update: function(objColVals, condition, cb) {
-    orm.update("burgers", objColVals, condition, function(res) {
-      cb(res);
-    });
-  },
-
-  //Delete function to throw away/delete burger from database.
-  delete: function(condition, cb) {
-    orm.delete("burgers", condition, function(res) {
-      cb(res);
-    });
-  }
+	// orm to show all values in the burger database.
+	all: function (callback) {
+		orm.all('burgers', function (result) {
+			callback(result);
+		});
+	},
+	// orm to add values to the burger database
+	// cols and vals are arrays
+	create: function (cols, vals, callback) {
+		orm.create('burgers', cols, vals, function (result) {
+			callback(result);
+		});
+	},
+	// orm to update values in the burger database
+	// objColVals would be the columns and values that you want to update	
+	update: function (objColVals, condition, callback) {
+		orm.update('burgers', objColVals, condition, function (result) {
+			callback(result);
+		});
+	},
+	// orm to delete from the burger database - future use.
+	delete: function (condition, callback) {
+		orm.delete('burgers', condition, function (result) {
+			callback(result);
+		});
+	}
 };
 
-// Export the database functions for the controller (burgers_controller.js).
 module.exports = burger;

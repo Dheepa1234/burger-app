@@ -1,77 +1,67 @@
-<div class="container">
-  <!--Jumbotron-->
-  <div class="jumbotron text-center bg-primary text-white">
-    <h1 class="display-4" id="app-title">Eat This Burger, S'il Vous Plait</h1>
-  
-    <p class="lead">Welcome. Will you eat this burger?</p>
-  </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h2 class="text-center">SUBMIT</h2></div>
+                    <div class="panel-body">
+                        <form class="create-update-form" action="burgers/create" method="POST">
+                          <div class="form-group">
+                            <label for="ca">Burger Name:</label>
+                            <input type="text" id="ca" name="name">
+                          </div>
 
-<img src="public/assets/img/burgers.jpeg"> 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card border border-primary">
-        <div class="card-header bg-primary text-white">
-         May I take your order?
-        </div>
-        <!--Create/add burger form-->
-        <div class="card-body">
-          <form class="create-form">
-            <div class="form-group">
-              <label for="burger">Place order here:</label>
-              <input type="text" class="form-control" id="burgerToGo" placeholder="">
+                          <div class="form-group">
+                            <label for="slee">Choices</label><br>
+                            <input type="radio" name="devoured" value="0" checked> Yes                            
+                            <input type="radio" name="devoured" value="1"> No<br>
+                          </div>
+
+                          <button type="submit" class="btn-primary">DEVOUR</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <button class="btn btn-primary" type="submit">Place order</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h2 class="text-center">DEVOUR</h2></div>
+                    <div class="panel-body">
+                        <ol>
+                          {{#each burgers}}
+                            {{#unless this.devoured}}
+                              <li>
+                                {{this.burger_name}}
 
+{{!--                                 <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+                                  <input type="hidden" name="devoured" value="true">
+                                  <button type="submit">Pick Up Order</button>
+                                </form> --}}
+                                {{> burgers/pickup-order}}
+                              </li>
+                            {{/unless}}
+                          {{/each}}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h2 class="text-center">DEVOURED</h2></div>
+                    <div class="panel-body">
+                        <ol>
+                          {{#each burgers}}
+                            {{#if this.devoured}}
+                              <li>
+                                {{this.burger_name}}
 
-  <div class="row mt-4">
-    <div class="col-md-6 mt-4">
-      <div class="card border border-primary">
-        <div class="card-header bg-primary text-white">
-         Burgers
+{{!--                                 <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+                                  <input type="hidden" name="devoured" value="false">
+                                  <button type="submit">New Order</button>
+                                </form> --}}
+                                {{> burgers/order-pickedup}}
+                              </li>
+                            {{/if}}
+                          {{/each}}
+                        </ol>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!--Div to hold burgers that have not been devoured yet-->
-        <div class="card-body">
-              {{#each burgers}}
-                {{#unless devoured}}
-                  {{> burgers/burger-block devour=false}}
-                {{/unless}}
-              {{/each}}
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-6 mt-4">
-      <div class="card devoured-card">
-        <div class="card-header text-red accent-4" id="devoured-card-header">
-         Devoured burgers
-        </div>
-        <!--When a burger has been devoured, put burger here-->
-        <div class="card-body">
-          {{#each burgers}}
-              {{#if devoured}}
-                {{> burgers/burger-devoured devour=true}}
-              {{/if}}
-          {{/each}}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!--Footer-->
-  <div class="row mt-5">
-    <div class="col-md-12">
-      <div class="card footer">
-        <div class="card-body footer-body text-">
-          <h5 class="card-title text-red accent-4">Gourmet Burgers Galore</h5>
-          <p class="card-text">May I Take Your Order?</p>
-          <br>
-          <br>
-          <small>Dheepa Sivakumaran</small>
-        </div>
-      </div>
-    </div>
